@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Weather App</string>
+    <string name="weather_sunny">Sunny</string>
+    <string name="weather_wind_low">Light Breeze</string>
+    <string name="weather_wind_dir">NE</string>
+    <string name="menu_page_more">Show more</string>
+    <string name="menu_page_home">Back to Home</string>
+</resources>

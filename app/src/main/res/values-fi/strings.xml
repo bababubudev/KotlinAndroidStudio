@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Sääsovellus</string>
+    <string name="weather_sunny">Poutaa</string>
+    <string name="weather_wind_low">Tuulenvire</string>
+    <string name="weather_wind_dir">Koillinen</string>
+    <string name="menu_page_more">Näytä lisää</string>
+    <string name="menu_page_home">Takaisin kotiin</string>
+</resources>
