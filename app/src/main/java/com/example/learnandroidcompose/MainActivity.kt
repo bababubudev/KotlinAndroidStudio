@@ -1,6 +1,7 @@
 package com.example.learnandroidcompose
 
 import android.os.Bundle
+import android.util.Log
 import android.util.Log.*
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -54,16 +55,29 @@ fun App() {
   val navController = rememberNavController()
   val retrofitInstance = RetrofitInstance.apiService
   var currentWeather by remember { mutableStateOf<WeatherResponse?>(null) }
+  var currentText by remember { mutableStateOf("tampere")}
 
-  LaunchedEffect(Unit) {
-    currentWeather = retrofitInstance.fetchWeather("tampere", "metric", API_KEY)
+  if (currentText.isNotEmpty()) {
+    LaunchedEffect(currentText) {
+      try {
+        currentWeather = retrofitInstance.fetchWeather(currentText, "metric", API_KEY)
+      }
+      catch (e: Exception) {
+        currentWeather = retrofitInstance.fetchWeather("tampere", "metric", API_KEY)
+        Log.d("FetchErr", "Error fetching", e)
+      }
+    }
+  }
+
+  fun onSearchTextSubmit(value: String) {
+    currentText = value.lowercase()
   }
 
   NavHost(
     navController = navController,
     startDestination = "homeScreen",
   ) {
-    composable("homeScreen") { HomeScreen(navController, currentWeather) }
+    composable("homeScreen") { HomeScreen(navController, currentWeather, ::onSearchTextSubmit) }
     composable("forecastByDate") { ForecastByDate(navController) }
   }
 }
